@@ -1,17 +1,14 @@
 #!/bin/bash
+APP=${!#}
 
 # The parameter $1 is the backup directory location dedicated to the app
 backup_dir=$1
 
-# The parameter $2 is theid of the app instance
-app=$2
-
-
-domain=$(sudo yunohost app setting $app domain)
-path=$(sudo yunohost app setting $app path)
+domain=$(sudo yunohost app setting $APP domain)
+path=$(sudo yunohost app setting $APP path)
 
 # Backup sources & data
-sudo cp -a /var/www/$app/. $backup_dir/sources
+sudo cp -a /var/www/$APP/. $backup_dir/sources
 
-# Copy Nginx 
-sudo cp -a /etc/nginx/conf.d/$domain.d/$app.conf $backup_dir/nginx.conf
+# Copy Nginx
+sudo cp -a /etc/nginx/conf.d/$domain.d/$APP.conf $backup_dir/nginx.conf
